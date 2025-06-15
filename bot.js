@@ -63,3 +63,45 @@ function loadDosenDatabase() {
     dosenDataMap = new Map();
   }
 }
+
+console.log("Menginisialisasi WhatsApp Client...");
+
+const client = new Client({
+  authStrategy: new LocalAuth(),
+  puppeteer: {
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  },
+});
+
+console.log("Client dibuat. Menunggu event...");
+
+client.on("qr", (qr) => {
+  console.log("QR Code diterima, pindai dengan WhatsApp Anda:");
+  qrcode.generate(qr, { small: true });
+});
+
+client.on("ready", () => {
+  console.log("-----------------------------------");
+  console.log("       CLIENT WHATSAPP SIAP!       ");
+  console.log("-----------------------------------");
+  loadDosenDatabase(); // Muat database setelah client siap
+});
+
+client.on("authenticated", () => {
+  console.log("Autentikasi Berhasil!");
+});
+
+client.on("auth_failure", (msg) => {
+  console.error("-----------------------------------");
+  console.error("     AUTENTIKASI GAGAL!            ");
+  console.error("-----------------------------------");
+  console.error("Pesan:", msg);
+  console.error("Hapus folder .wwebjs_auth dan coba jalankan lagi.");
+});
+
+client.on("disconnected", (reason) => {
+  console.warn("-----------------------------------");
+  console.warn("      CLIENT TERPUTUS!            ");
+  console.warn("-----------------------------------");
+  console.warn("Alasan:", reason);
+});
