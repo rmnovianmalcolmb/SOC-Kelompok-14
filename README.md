@@ -3,7 +3,7 @@
 Anggota Kelompok 14 SOC (Security Operations Center A)
 
 - Daffa Rajendra Priyatama 5027231009
-- Naufal Syafi' Hakim 5027231027
+- Naufal Syafi' Hakim 5027231022
 - RM. Novian Malcolm Bayuputra 5027231035
 - Dzaky Faiq Fayyadhi 5027231047
 - Dimas Andhika Diputra 5027231074
